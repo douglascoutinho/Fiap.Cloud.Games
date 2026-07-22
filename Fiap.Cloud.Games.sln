@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Cloud.Games.Infra", "src\Fiap.Cloud.Games.Infra\Fiap.Cloud.Games.Infra.csproj", "{EA78BF92-B9FF-42BD-A0C6-E63CCE3C5B30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Cloud.Games.Domain", "src\Fiap.Cloud.Games.Domain\Fiap.Cloud.Games.Domain.csproj", "{A5FF2375-5659-4E27-864D-7F094C5E2401}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Cloud.Games.Api", "src\Fiap.Cloud.Games.Api\Fiap.Cloud.Games.Api.csproj", "{3C1C6A54-1B05-4FC5-8D90-20D155E20219}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA78BF92-B9FF-42BD-A0C6-E63CCE3C5B30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA78BF92-B9FF-42BD-A0C6-E63CCE3C5B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA78BF92-B9FF-42BD-A0C6-E63CCE3C5B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA78BF92-B9FF-42BD-A0C6-E63CCE3C5B30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5FF2375-5659-4E27-864D-7F094C5E2401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5FF2375-5659-4E27-864D-7F094C5E2401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5FF2375-5659-4E27-864D-7F094C5E2401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5FF2375-5659-4E27-864D-7F094C5E2401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C1C6A54-1B05-4FC5-8D90-20D155E20219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C1C6A54-1B05-4FC5-8D90-20D155E20219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C1C6A54-1B05-4FC5-8D90-20D155E20219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C1C6A54-1B05-4FC5-8D90-20D155E20219}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A43C121-935B-4329-8003-D795E4422E5D}
+	EndGlobalSection
+EndGlobal
