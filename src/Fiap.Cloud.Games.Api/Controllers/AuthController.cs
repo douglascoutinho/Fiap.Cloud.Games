@@ -20,8 +20,8 @@ namespace dotnet_jwt.Controllers
 		/// <returns></returns>
 		/// <response code="200"></response>
     [HttpPost("login")]
-    [ProducesResponseType(typeof(PostUsuarioRequestDto), 200)]
-    public IActionResult Login([FromBody] PostUsuarioRequestDto dto)
+    [ProducesResponseType(typeof(PostAuthRequestDto), 200)]
+    public IActionResult Login([FromBody] PostAuthRequestDto dto)
     {
       if (dto.Login == "admin" && dto.Senha == "admin")
       {

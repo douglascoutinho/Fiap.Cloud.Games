@@ -7,10 +7,9 @@
     void AddRange(ICollection<TModel> model);
     void Update(TModel model);
     void Delete(TModel model);
-    List<TModel>? GetAll();
-    List<TModel> GetAll(Func<TModel, bool> where);
     TModel? GetById(int id);
-    TModel? Get(Func<TModel, bool> where);
+    IQueryable<TModel> Get(System.Linq.Expressions.Expression<Func<TModel, bool>> where);
+    IQueryable<TModel> Get();
     void Commit();
   }
 }

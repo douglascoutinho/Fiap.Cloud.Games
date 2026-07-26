@@ -1,9 +1,9 @@
 ﻿namespace Fiap.Cloud.Games.Api.Models.Usuario
 {
-  public class PostUsuarioRequestDto
+  public class PutUsuarioRequestDto
   {
     /// <summary>
-    /// Nome  
+    /// Nome
     /// </summary>
     public string? Nome { get; set; }
 
@@ -16,5 +16,10 @@
     /// Senha
     /// </summary>
     public string? Senha { get; set; }
+
+    /// <summary>
+    /// Ativo
+    /// </summary>
+    public bool Ativo { get; set; }
   }
 }

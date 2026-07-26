@@ -26,7 +26,7 @@ namespace Fiap.Cloud.Games.Infra.Data.EntityFramework
       modelBuilder.HasDefaultSchema(_defaultSchema);
 
       
-      modelBuilder.Entity<Usuario>(entity =>
+      modelBuilder.Entity<Usuario>(entity =>  
       {
         entity.HasKey(x => x.Id)
                   .HasName("PK_Usuario");

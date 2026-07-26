@@ -4,9 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.Cloud.Games.Infra.Repositories
 {
-  /// <summary>
-  /// Repositorio base 
-  /// </summary>
   public abstract class BaseRepository<TModel> : IBaseRepository<TModel>
     where TModel : class
   {
@@ -16,10 +13,9 @@ namespace Fiap.Cloud.Games.Infra.Repositories
     public virtual void AddRange(ICollection<TModel> model) => _contexto?.AddRange(model);
     public virtual void Update(TModel model) =>  _contexto?.Update(model);
     public virtual void Delete(TModel model) =>  _contexto?.Remove(model);
-    public virtual List<TModel>? GetAll() => _contexto?.Set<TModel>()?.ToList();
     public virtual TModel? GetById(int id) => _contexto?.Set<TModel>().Find(id);
-    public virtual List<TModel> GetAll(Func<TModel, bool> where) => _contexto.Set<TModel>().AsNoTracking().Where(where).ToList();
-    public virtual TModel? Get(Func<TModel, bool> where) => _contexto?.Set<TModel>().AsNoTracking().FirstOrDefault(where);
+    public virtual IQueryable<TModel?> Get(System.Linq.Expressions.Expression<Func<TModel, bool>> where) => _contexto?.Set<TModel>().AsNoTracking().Where(where) ?? Enumerable.Empty<TModel>().AsQueryable();
+    public virtual IQueryable<TModel> Get() => _contexto?.Set<TModel>().AsNoTracking() ?? Enumerable.Empty<TModel>().AsQueryable();
     public void Commit() => _contexto?.SaveChanges();
     public virtual void Dispose() => _contexto?.Dispose();
   }

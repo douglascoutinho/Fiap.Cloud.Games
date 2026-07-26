@@ -1,7 +1,9 @@
 ﻿namespace Fiap.Cloud.Games.Domain.Entity
 {
-  public class EntityBase
+  public abstract class EntityBase
   {
-    public int Id { get; private set; }
+    public int Id { get;  set; }
+    public bool Ativo { get;  set; }
+    public DateTime DataCadastro { get; set; }
   }
 }
