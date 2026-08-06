@@ -23,7 +23,7 @@ namespace Fiap.Cloud.Games.Infra.Data.EntityFramework
 
       var schema = Contexto.DefaultSchema;
       var optionsBuilder = new DbContextOptionsBuilder<Contexto>();
-      optionsBuilder.UseSqlServer(connectionString, opts =>
+      optionsBuilder.UseSqlite(connectionString, opts =>
       {
         opts.MigrationsHistoryTable(HistoryRepository.DefaultTableName, schema);
         opts.CommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds);

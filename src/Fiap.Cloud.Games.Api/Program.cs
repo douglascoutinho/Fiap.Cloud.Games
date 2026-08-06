@@ -1,11 +1,21 @@
+using Fiap.Cloud.Games.Api.Services.IoC;
+using Fiap.Cloud.Games.Infra.Data.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+var caminhoBancoLocal = Directory.GetCurrentDirectory().Replace("Fiap.Cloud.Games.Api", "Fiap.Cloud.Games.Infra");
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")?.Replace("{AppDir}",$"{caminhoBancoLocal}");
+
+builder.Services.AddDbContext<Contexto>(options =>
+    options.UseSqlite(connectionString));
+
+  
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
@@ -21,7 +31,7 @@ builder.Services.AddSwaggerGen(options =>
     }
   };
 
-  // Definição da Versão 1
+  // Definição da Versão 1 
   options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
   {
     Title = generalInfo.Title,
@@ -30,7 +40,7 @@ builder.Services.AddSwaggerGen(options =>
     Contact = generalInfo.Contact
   });
 
-  // Definição da Versão 2
+  // Definição da Versão 2 
   options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
   {
     Title = generalInfo.Title,
@@ -38,12 +48,9 @@ builder.Services.AddSwaggerGen(options =>
     Description = generalInfo.Description,
     Contact = generalInfo.Contact
   });
-
-
 });
 
-#region [JWT]
-
+#region [JWT] 
 var jwtKey = builder.Configuration["Jwt:Key"];
 var jwtIssuer = builder.Configuration["Jwt:Issuer"];
 
@@ -69,28 +76,27 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization(options =>
 {
   options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-});     
+});
 
-builder.Services.AddControllers();
-
+builder.Services.RegisterDependencies(builder.Configuration);
 #endregion
 
-
 var app = builder.Build();
+
 if (app.Environment.IsDevelopment())
 {
   app.UseSwagger();
   app.UseSwaggerUI(options =>
   {
-    // Cria os seletores de versão no topo da página do Swagger
+    // Cria os seletores de versão no topo da página do Swagger 
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Api - Fiap Cloud Games v1");
     options.SwaggerEndpoint("/swagger/v2/swagger.json", "Api - Fiap Cloud Games v2");
   });
 }
 
+app.UseHttpsRedirection(); // Adicionado boa prática para APIs locais
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
