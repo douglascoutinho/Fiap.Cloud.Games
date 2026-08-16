@@ -1,9 +1,12 @@
 using Fiap.Cloud.Games.Api.Services.IoC;
+using Fiap.Cloud.Games.Api.Services.Middlewares;
 using Fiap.Cloud.Games.Infra.Data.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +18,12 @@ builder.Services.AddDbContext<Contexto>(options =>
     options.UseSqlite(connectionString));
 
   
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+  options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+}); ;
+
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
@@ -48,6 +56,31 @@ builder.Services.AddSwaggerGen(options =>
     Description = generalInfo.Description,
     Contact = generalInfo.Contact
   });
+
+  options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+  {
+    Name = "Authorization",
+    Type = SecuritySchemeType.ApiKey,
+    Scheme = "Bearer",
+    BearerFormat = "JWT",
+    In = ParameterLocation.Header,
+    Description = "Insira o token JWT desta forma: Bearer seu_token_aqui"
+  });
+
+  options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
 });
 
 #region [JWT] 
@@ -83,18 +116,20 @@ builder.Services.RegisterDependencies(builder.Configuration);
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<CorrelationMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
   app.UseSwagger();
   app.UseSwaggerUI(options =>
   {
-    // Cria os seletores de versão no topo da página do Swagger 
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Api - Fiap Cloud Games v1");
     options.SwaggerEndpoint("/swagger/v2/swagger.json", "Api - Fiap Cloud Games v2");
   });
 }
 
-app.UseHttpsRedirection(); // Adicionado boa prática para APIs locais
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

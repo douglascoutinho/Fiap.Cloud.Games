@@ -12,5 +12,19 @@ namespace Fiap.Cloud.Games.Domain.Services.Extensions
 
       return email.Contains("@") && email.Contains(".");
     }
+
+    public static bool ValidarSenha(this Usuario usuario)
+    {
+      var senha = usuario.Senha;
+
+      if (string.IsNullOrWhiteSpace(senha)) return false;
+      if (senha.Length < 8) return false;
+
+      bool temLetra = senha.Any(char.IsLetter);
+      bool temNumero = senha.Any(char.IsDigit);
+      bool temEspecial = senha.Any(ch => !char.IsLetterOrDigit(ch));
+
+      return temLetra && temNumero && temEspecial;
+    }
   }
 } 

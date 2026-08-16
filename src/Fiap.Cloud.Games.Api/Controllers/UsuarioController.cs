@@ -1,4 +1,5 @@
 using Fiap.Cloud.Games.Api.Models.Usuario;
+using Fiap.Cloud.Games.Api.Services;
 using Fiap.Cloud.Games.Domain.Entity;
 using Fiap.Cloud.Games.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@ namespace dotnet_jwt.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
+  [Authorize(Roles = "Administrador")]
   public class UsuarioController : ControllerBase
   {
     readonly UsuarioService _usuarioService;
@@ -77,10 +79,9 @@ namespace dotnet_jwt.Controllers
     /// <response code="200"></response>
     [HttpPost("")]
     [ProducesResponseType(typeof(string), 200)]
-    [AllowAnonymous]
     public IActionResult Post([FromBody] PostUsuarioRequestDto dto)
     {
-      var usuario = new Usuario(dto.Nome, dto.Email, dto.Senha);  
+      var usuario = new Usuario(dto.Nome, dto.Email, dto.Senha, dto.Perfil.ToString());  
 
       _usuarioService.Incluir(usuario);
 

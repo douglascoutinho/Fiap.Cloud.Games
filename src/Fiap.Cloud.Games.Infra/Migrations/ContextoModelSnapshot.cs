@@ -37,6 +37,9 @@ namespace Fiap.Cloud.Games.Infra.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Perfil")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Senha")
                         .HasColumnType("TEXT");
 

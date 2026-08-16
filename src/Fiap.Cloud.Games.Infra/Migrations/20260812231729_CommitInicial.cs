@@ -24,6 +24,7 @@ namespace Fiap.Cloud.Games.Infra.Migrations
                     Nome = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
                     Senha = table.Column<string>(type: "TEXT", nullable: true),
+                    Perfil = table.Column<string>(type: "TEXT", nullable: true),
                     Ativo = table.Column<bool>(type: "INTEGER", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },

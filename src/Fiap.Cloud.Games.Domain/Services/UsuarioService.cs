@@ -1,6 +1,8 @@
 ﻿using Fiap.Cloud.Games.Domain.Entity;
 using Fiap.Cloud.Games.Domain.Repositories;
 using Fiap.Cloud.Games.Domain.Services.Extensions;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace Fiap.Cloud.Games.Domain.Services
 {
@@ -30,7 +32,7 @@ namespace Fiap.Cloud.Games.Domain.Services
       var usuario = _usuarioRepository.GetById(id);
 
       if (usuario == null)
-        throw new Exception("Informado identificador que não existe.");
+        throw new ValidationException("Informado identificador que não existe.");
 
       return usuario;
     }
@@ -40,10 +42,13 @@ namespace Fiap.Cloud.Games.Domain.Services
       var usuarioExistente = _usuarioRepository.GetById(usuario.Id);
 
       if (usuarioExistente != null)
-        throw new Exception("Informado identificador já existe.");
+        throw new ApplicationException("Informado identificador já existe.");
 
       if (!usuario.ValidarEmail())
-        throw new Exception("Email inválido.");
+        throw new ApplicationException("Email inválido.");
+
+      if (!usuario.ValidarSenha())
+        throw new ApplicationException("Senha deve ter no mínimo de 8 caracteres com números, letras e caracteres especiais");
 
       _usuarioRepository.Add(usuario);
 
@@ -54,7 +59,7 @@ namespace Fiap.Cloud.Games.Domain.Services
     {
 
       if (usuarioExistente == null)
-        throw new Exception("Informado identificador que não existe.");
+        throw new ValidationException("Informado identificador que não existe.");
 
       usuarioExistente.Atualizar
       (
@@ -68,6 +73,5 @@ namespace Fiap.Cloud.Games.Domain.Services
 
       _usuarioRepository.Commit();
     }
-
   }
 }

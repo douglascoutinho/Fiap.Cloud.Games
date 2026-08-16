@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiap.Cloud.Games.Infra.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20260805231116_CommitInicial")]
+    [Migration("20260812231729_CommitInicial")]
     partial class CommitInicial
     {
         /// <inheritdoc />
@@ -38,6 +38,9 @@ namespace Fiap.Cloud.Games.Infra.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Perfil")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Senha")
