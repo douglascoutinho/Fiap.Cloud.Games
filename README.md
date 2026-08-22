@@ -1,14 +1,12 @@
 # 💻 FIAP Cloud Games (FCG) 
 
-![Status do Build](https://shields.io)
-![Licença](https://shields.io)
-
 > Api com o objetivo de manter uma plataforma de venda de jogos digitais e gestão de servidores para partidas online.
 
 ## 🚀 Funcionalidades
 
 - [x] Autenticação segura via JWT.
 - [x] Integração em tempo real com banco de dados.
+- [x] Projeto de teste.
 - [ ] Módulo de Jogos (Em desenvolvimento).
 
 ## 🛠️ Tecnologias Utilizadas
@@ -41,16 +39,10 @@ Siga o guia passo a passo para configurar o ambiente de desenvolvimento local:
    cd Fiap.Cloud.Games
    ```
 2. **Configurar as Variáveis de Ambiente:**
-   Com o projeto `Fiap.Cloud.Games.Api` rodando `HTTP`,  existe um arquivo chamado `Fiap.Cloud.Games.Api.http` com as credenciais configuradas para geração de tokens com dois níveis de acesso `Usuário` e  `Administrador`.
+   Com o projeto `Fiap.Cloud.Games.Api` rodando em uma máquina windows no protocolo `HTTP`, não tem necessidade de configurqação, existe um arquivo chamado `Fiap.Cloud.Games.Api.http` com os jsons montados para geração de tokens com dois níveis de acesso `Usuário` e  `Administrador`.
 
 3. **Banco de Dados:**
-Com banco `Sqlite` já configurado no projeto, não tem necessidade de gerar `Migrations`,  existe um arquivo chamado `Fiap.Cloud.Games.Api.http` com json email e senha inseridos para geração de tokens com dois níveis de acesso `Usuário` e  `Administrador`.
-
-4. **Instalar Dependências e Iniciar:**
-   ```bash
-   npm install
-   npm run dev
-   ```
+Com banco `Sqlite` já configurado no projeto, não tem necessidade de gerar `Migrations`, o arquivo `api_banco.db` que está na camada `Fiap.Cloud.Games.Infra.` consta as tabelas necessárias para rodar o projeto.
 
 ## 📄 Licença
 
