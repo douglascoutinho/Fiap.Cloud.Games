@@ -1,5 +1,4 @@
 using Fiap.Cloud.Games.Api.Models.Usuario;
-using Fiap.Cloud.Games.Api.Services;
 using Fiap.Cloud.Games.Domain.Entity;
 using Fiap.Cloud.Games.Domain.Services;
 using Microsoft.AspNetCore.Authorization;

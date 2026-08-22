@@ -33,23 +33,6 @@ namespace dotnet_jwt.Controllers
       );
 
       return Ok(new { token });
-
-      //if (dto.Login == "admin" && dto.Senha == "admin")
-      //{
-      //  var token = GenerateToken(dto.Login, "Admin");
-      //  return Ok(new { token });
-      //}
-      //else if (dto.Login == "user" && dto.Senha == "user")
-      //{
-      //  var token = GenerateToken(dto.Login, "User");
-
-
-      //  return Ok(new { token });
-      //}
-      //else
-      //{
-      //  return Unauthorized();
-      //}
     }
   }
 }
