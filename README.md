@@ -38,10 +38,16 @@ Siga o guia passo a passo para configurar o ambiente de desenvolvimento local:
    git clone https://github.com
    cd Fiap.Cloud.Games
    ```
-2. **Configurar as Variáveis de Ambiente:**
-   Com o projeto `Fiap.Cloud.Games.Api` rodando em uma máquina windows no protocolo `HTTP`, não tem necessidade de configurqação, existe um arquivo chamado `Fiap.Cloud.Games.Api.http` com os jsons montados para geração de tokens com dois níveis de acesso `Usuário` e  `Administrador`.
+2. **Configurar Ambiente:**
+   Com o projeto `Fiap.Cloud.Games.Api` rodando em uma máquina windows no protocolo `HTTP`, não tem necessidade de configuração.
 
-3. **Banco de Dados:**
+3. **Use os JSONs Prontos:**.
+   Utilize o arquivo estruturado `Fiap.Cloud.Games.Api.http` para obter login(email) e senha.
+
+4. **Níveis de Acesso:**.
+  Token gerado corresponde ao nível exigido pelo endpoint (o arquivo `Fiap.Cloud.Games.Api.http` possui modelos prontos para os perfis Usuário e Administrador).
+
+5. **Banco de Dados Em Memória:**
 Com banco `Sqlite` já configurado no projeto, não tem necessidade de gerar `Migrations`, o arquivo `api_banco.db` que está na camada `Fiap.Cloud.Games.Infra.` consta as tabelas necessárias para rodar o projeto.
 
 ## 📄 Licença
